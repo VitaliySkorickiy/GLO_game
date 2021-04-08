@@ -16,6 +16,10 @@ function noName() {
     if (num == numPrompt) {
       alert('Поздравляю, Вы угадали!!!')
 
+    } else if (numPrompt == '') {
+      alert('Введи число!')
+      game()
+
     } else if (numPrompt === null) {
       alert('Игра окончена')
 
@@ -40,6 +44,9 @@ function noName() {
     } else {
       alert('Игра окончена')
     }
+
+    console.log(num);
+    console.log(numPrompt);
 
   }
 
