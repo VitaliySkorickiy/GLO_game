@@ -7,14 +7,35 @@ let isNumber = function (n) {
 
 function noName() {
 
-  let num = Math.floor(Math.random() * 10 + 1);
+  let count = 10;
+  let num = Math.floor(Math.random() * 100 + 1);
 
   function game() {
 
-    let numPrompt = prompt('Угадай число от 1 до 100');
+    let pr = prompt('Угадай число от 1 до 100');
+    let numPrompt;
+
+    pr !== null ? numPrompt = pr.trim() : numPrompt = pr;
+
+    if (!isNumber(numPrompt)) {
+      count;
+    } else {
+      count--
+    }
 
     if (num == numPrompt) {
-      alert('Поздравляю, Вы угадали!!!')
+      if (confirm('Поздравляю, Вы угадали!!! Хотите сыграть еще?')) {
+        noName()
+      } else {
+        alert('Игра окончена')
+      }
+
+    } else if (count == 0) {
+      if (confirm('Попытки закончились, хотите сыграть еще?')) {
+        noName()
+      } else {
+        alert('Игра окончена')
+      }
 
     } else if (numPrompt == '') {
       alert('Введи число!')
@@ -25,21 +46,21 @@ function noName() {
 
     } else if (num > numPrompt) {
 
-      if (confirm('Загаданное число больше, попробуйте ещё')) {
+      if (confirm(`Загаданное число больше, попробуйте ещё, осталось ${count} попыток`)) {
         game()
       } else {
         alert('Игра окончена')
       }
 
     } else if (num < numPrompt) {
-      if (confirm('Загаданное число меньше, попробуйте ещё')) {
+      if (confirm(`Загаданное число меньше, попробуйте ещё, осталось ${count} попыток`)) {
         game()
       } else {
         alert('Игра окончена')
       }
 
     } else if (!isNumber(numPrompt)) {
-      alert('Введи число!')
+      alert(`Введи число! осталось ${count} попыток`)
       game()
     } else {
       alert('Игра окончена')
@@ -47,7 +68,7 @@ function noName() {
 
     console.log(num);
     console.log(numPrompt);
-
+    console.log('count', count);
   }
 
   game();
